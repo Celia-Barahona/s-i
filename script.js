@@ -16,6 +16,7 @@ let guessedLetters = [];
 const displayDiv = document.getElementById("wordDisplay");
 const guessedList = document.getElementById("guessedList");
 const guessedLettersSpan = document.getElementById("guessedLetters");
+const letterInput = document.getElementById("letterInput");
 
 function updateDisplay() {
   let display = "";
@@ -48,7 +49,6 @@ function nextWord() {
 
   guessedList.innerHTML += `<div class="guessed" style="color:${color}">${originalWord.toUpperCase()}</div>`;
 
-  // Cambiar fondo temporalmente
   document.body.style.backgroundColor = "#90ee90"; // verde clarito
   setTimeout(() => {
     document.body.style.backgroundColor = "#d3d3d3";
@@ -56,12 +56,6 @@ function nextWord() {
 
   guessedLetters = [];
   updateGuessedLetters();
-
-  if (checkCompletion()) {
-    flashWord("green");
-  } else {
-    flashWord("red");
-  }
 
   currentIndex++;
   if (currentIndex < words.length) {
@@ -72,24 +66,32 @@ function nextWord() {
     document.querySelector(".left").style.display = "block";
     document.querySelector(".right").style.display = "block";
 
-    // Ocultar textos principales
     document.getElementById("title").style.display = "none";
     document.getElementById("instructions").style.display = "none";
     document.getElementById("guessedLettersContainer").style.display = "none";
+    letterInput.style.display = "none"; // Ocultamos el campo de entrada
   }
 }
 
-document.addEventListener("keydown", (e) => {
-  const letter = e.key.toUpperCase();
+// Evento para manejar el input del usuario
+letterInput.addEventListener("input", (e) => {
+  const letter = e.target.value.toUpperCase(); // Convertimos la letra a mayúscula
   if (/^[A-ZÑ]$/.test(letter) && !guessedLetters.includes(letter)) {
-    guessedLetters.push(letter);
+    guessedLetters.push(letter); // Añadimos la letra a las letras adivinadas
     updateGuessedLetters();
     updateDisplay();
 
+    // Verificamos si la palabra está completa
     if (checkCompletion()) {
-      setTimeout(nextWord, 800);
+      setTimeout(nextWord, 800); // Pasar a la siguiente palabra tras completar
     }
   }
+
+  // Dejamos la letra en el input por 0.5 segundos y luego lo limpiamos
+  setTimeout(() => {
+    e.target.value = ""; // Limpiamos el campo automáticamente
+  }, 250); // Tiempo reducido a medio segundo
 });
 
+// Inicializamos la visualización
 updateDisplay();
