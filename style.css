@@ -112,3 +112,45 @@ h1 {
 .left, .right {
   display: none;
 }
+
+
+#headerContainer {
+  display: flex; /* Activa Flexbox */
+  align-items: center; /* Alinea verticalmente en el centro */
+  justify-content: center; /* Centra horizontalmente */
+  gap: 20px; /* Espaciado horizontal entre el ícono y el título */
+}
+
+/* Estilo para el botón de instrucciones */
+#instructionsButton {
+  padding: 10px 20px;
+  font-size: 2em;
+  border: none;
+}
+
+/* Estilo para el diálogo */
+dialog {
+  border: none;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  width: 70%;
+}
+
+dialog h2 {
+  margin-top: 0;
+}
+
+dialog button {
+  padding: 8px 16px;
+  font-size: 1em;
+  background-color: #FF6B6B;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+dialog button:hover {
+  background-color: #c70000;
+}
