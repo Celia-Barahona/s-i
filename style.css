@@ -1,159 +1,173 @@
-/* Aseguramos que el body ocupe toda la pantalla */
-body, html {
-  margin: 0; /* Elimina márgenes predeterminados */
-  padding: 0; /* Elimina paddings predeterminados */
-  width: 100%; /* Ocupa todo el ancho */
-  height: 100%; /* Ocupa toda la altura */
-  display: flex; /* Para centrar el contenido */
-  align-items: center; /* Centrado vertical */
-  justify-content: center; /* Centrado horizontal */
-  background-color: #f0f0f0; /* Color de fondo */
-}
-
-/* Ajustamos el diseño principal */
-.container {
-  display: flex; /* Usamos flexbox para alinear los elementos horizontalmente */
-  justify-content: space-between; /* Deja espacio entre las imágenes y el contenido principal */
-  align-items: center; /* Alinea todos los elementos verticalmente */
-  width: 100%; /* Aseguramos que ocupe todo el ancho */
-  height: 100vh; /* Aseguramos que ocupe toda la altura */
-  padding: 0 20px; /* Agregamos un poco de espacio en los lados */
-  box-sizing: border-box; /* Incluye padding en el cálculo del tamaño */
-}
-
-/* Sección izquierda (imagen) */
+/* Sección izquierda (imágenes) */
 .left {
-  flex: 0 0 auto; /* La imagen no se expande ni se reduce */
-  text-align: center; /* Centra la imagen */
+  flex: 0 0 auto;
+  text-align: center;
+  display: none;
 }
 
 .left img {
-  max-width: 150px; /* Ajusta el tamaño de la imagen */
-  height: auto; /* Mantén la proporción */
+  max-width: 150px;
+  height: auto;
 }
 
-/* Sección derecha (imagen) */
-.right {
-  flex: 0 0 auto; /* La imagen no se expande ni se reduce */
-  text-align: center; /* Centra la imagen */
-}
-
-.right img {
-  max-width: 150px; /* Ajusta el tamaño de la imagen */
-  height: auto; /* Mantén la proporción */
-}
-
-/* Sección central (juego principal) */
+/* Sección central (juego) */
 .center {
-  flex: 1; /* Ocupa todo el espacio restante */
-  text-align: center; /* Centra el contenido */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+  background-color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  box-sizing: border-box;   
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
 }
 
 h1 {
-  font-size: 2em;
-  margin-bottom: 20px;
+  font-size: 2.5em;
+  color: #4479a3;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 1.2em;
+  color: #333;
+  margin: 10px 0;
+}
+
+button {
+  font-size: 1.2em;
+  background-color: #4479a3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #355f82;
 }
 
 #wordDisplay {
+  font-family: "Courier New", Courier, monospace;
   font-size: 1.5em;
   letter-spacing: 5px;
   margin: 20px 0;
-}
-
-#letterInput {
-  display: block;
-  margin: 20px auto;
-  padding: 10px;
-  font-size: 1.5em;
-  text-align: center;
-  border: 2px solid #333;
+  color: #555;
+  background-color: #eef;
+  padding: 15px;
   border-radius: 5px;
-  width: 50%;
-  max-width: 300px;
+  text-align: center;
+  padding-left: 20px;
 }
 
-#letterInput:focus {
-  outline: none;
-  border-color: #007BFF;
-  box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+/* Lista de palabras  */
+#guessedLettersContainer {
+  font-size: 1.2em;
+  color: #333;
+}
+
+#guessedWords {
+  text-align: left;
+}
+
+#guessedWords h2 {
+  font-size: 1.5em;
+  color: #4479a3;
+  margin-bottom: 10px;
 }
 
 #guessedList {
-  margin-top: 20px;
+  font-family: "Courier New", Courier, monospace;
   font-size: 1.2em;
+  color: #555;
+  background-color: #eef;
+  padding: 10px;
+  border-radius: 5px;
+  width: 100%;
+  word-wrap: break-word;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Input de letras */
+#letterInput {
+  width: 80%;
+  max-width: 400px;
+  font-size: 1.5em;
+  padding: 10px;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 #letterInput:focus {
   outline: none;
-  border-color: #007BFF;
-  box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+  border-color: #4479a3;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 /* Estilo para el hint del input */
 #letterInput::placeholder {
-  font-size: 0.8em; /* Reducimos el tamaño del texto */
-  color: #888; /* Color gris claro */
-  font-style: italic; /* Opcional: hace el texto cursivo */
+  font-size: 0.8em;
+  color: #888;
+  font-style: italic;
 }
 
 /* Diseño responsivo para evitar que el hint se oculte en pantallas pequeñas */
-@media (max-width: 480px) { /* Para dispositivos móviles pequeños */
+@media (max-width: 480px) {
   #letterInput::placeholder {
-    font-size: 1em; /* Aumentamos el tamaño del hint para que sea legible */
+    font-size: 1em;
   }
 
   #letterInput {
-    width: 80%; /* Ajustamos el ancho del input */
-    font-size: 1em; /* Aumentamos ligeramente el tamaño del texto */
+    width: 80%;
+    font-size: 1em;
   }
 }
 
-/* Opcional: Ocultar las imágenes izquierda y derecha si no son necesarias */
-.left, .right {
-  display: none;
-}
-
-
 #headerContainer {
-  display: flex; /* Activa Flexbox */
-  align-items: center; /* Alinea verticalmente en el centro */
-  justify-content: center; /* Centra horizontalmente */
-  gap: 20px; /* Espaciado horizontal entre el ícono y el título */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Estilo para el botón de instrucciones */
 #instructionsButton {
-  padding: 10px 20px;
-  font-size: 2em;
-  border: none;
+  font-size: 1.5em;
   background: none;
-}
-
-/* Estilo para el diálogo */
-dialog {
   border: none;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  width: 70%;
-}
-
-dialog h2 {
-  margin-top: 0;
-}
-
-dialog button {
-  padding: 8px 16px;
-  font-size: 1em;
-  background-color: #FF6B6B;
-  color: white;
-  border: none;
-  border-radius: 5px;
   cursor: pointer;
 }
 
-dialog button:hover {
-  background-color: #c70000;
+#instructionsButton i {
+  color: #4479a3;
+  transition: color 0.3s;
+}
+
+#instructionsButton:hover i {
+  color: #355f82;
 }
 
 /* Estilo para el botón de la nueva pantalla */
@@ -161,18 +175,49 @@ dialog button:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2rem; /* Tamaño del ícono */
-  background-color: #4479a3; /* Fondo azul */
-  color: white; /* Color del texto */
+  font-size: 1rem;
+  background-color: #4479a3;
+  color: white;
+  font
   border: none;
   border-radius: 10px;
   padding: 0px 30px;
   cursor: pointer;
   margin: 20px auto;
-  z-index: 1000; /* Asegura que esté encima de otros elementos */
-  transition: background-color 0.3s ease; /* Animación suave */
+  z-index: 1000;
+  transition: background-color 0.3s ease;
 }
 
 #nextScreenButton:hover {
-  background-color: #355f82; /* Azul más oscuro al pasar el mouse */
+  background-color: #355f82;
+}
+
+#nextScreenButton p {
+  color: white;
+}
+
+/* Dialog de ayuda */
+dialog {
+  width: 90%;
+  max-width: 700px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  text-align: center;
+}
+
+dialog h2 {
+  font-size: 1.8em;
+  color: #4479a3;
+  margin-bottom: 10px;
+}
+
+dialog p {
+  font-size: 1em;
+  margin: 10px 0;
+}
+
+dialog button {
+  margin-top: 20px;
 }

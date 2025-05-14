@@ -1,32 +1,31 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Juego de Palabras</title>
-  <base href="/s-i/">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Descubre las Palabras Secretas</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-
+  <h1>🕹️ Descubre las palabras secretas 🎉</h1>
   <div class="container">
-    <!-- Imagen de la izquierda -->
+    <!-- Imágenes -->
     <div class="left">
       <img src="img/Silvia.png" alt="Imagen izquierda">
+      <img src="img/Isma.png" alt="Imagen derecha">
     </div>
 
     <!-- Centro: el juego -->
     <div class="center">
       <div id="headerContainer">
-  <h1 id="title">Descubre las palabras secretas</h1>
-  <button id="instructionsButton" aria-label="Ver Instrucciones">
-  <i class="fa-solid fa-circle-info" style="color: #4479a2;"></i>
-</button>
-</div>
-      <div id="wordDisplay"></div>
+        <h2>¡Adivina las palabras clave!</h2>
+        <button id="instructionsButton" aria-label="Ver Instrucciones">
+          <i class="fa-solid fa-circle-info"></i>
+        </button>
+      </div>
+      <div id="wordDisplay">_ _ _ _</div>
       <p id="instructions">Introduce letras en el campo de texto para descubrir la palabra secreta</p>
-      <!-- Campo de entrada único con transformación a mayúsculas -->
       <input id="letterInput" type="text" maxlength="1" placeholder="Escribe una letra" style="text-transform: uppercase;" autofocus />
       <div id="guessedLettersContainer">
         Letras pulsadas: <span id="guessedLetters"></span>
@@ -35,40 +34,32 @@
         <h2>Palabras adivinadas:</h2>
         <div id="guessedList"></div>
       </div>
-      <!-- Botón para ir a una nueva pantalla -->
-<button id="nextScreenButton" style="display: none;">
-  <p style="padding-right: 30px;">¿Continuar?</p>
-  <i class="fa-solid fa-arrow-right-long" ></i>
-</button>
-    </div>
 
-    <!-- Imagen de la derecha -->
-    <div class="right">
-      <img src="img/Isma.png" alt="Trollface">
+      <!-- Botón para ir a una nueva pantalla -->
+      <button id="nextScreenButton" style="display: none;">
+        <p style="padding-right: 30px;">¿Continuar?</p>
+        <i class="fa-solid fa-arrow-right-long" ></i>
+      </button>
     </div>
   </div>
 
-  <!-- Diálogo con las instrucciones -->
-<dialog id="instructionsDialog">
-  <h2>Instrucciones del Juego</h2>
-  <p>🕹️ ¡Bienvenidos al mini juego secreto de las palabras! 🎉</p>
-  <br>
-<p>¡Hola, compis!</p>
-<p>Aquí tenéis el jueguecito que os hemos preparado con todo el cariño del mundo.</p>
-
-<p>👣 Pasos para jugar sin morir en el intento:</p>
-
-   <p style="text-indent: 30px">🧠 Escribe letras con tu teclado.</p>
-   <p style="text-indent: 30px">✅ Si aciertas, la palabra se colorea.</p>
-   <p style="text-indent: 30px">🎉 Cuando adivinéis todas… ¡sorpresita visual!</p>
-
-<p>¡A disfrutarlo y que gane el más listo! 🧩</p>
-<br>
-<p>Una vez el primer misterio hayáis resuelto, abrid el juego final</p>
-  <button id="closeDialog">Cerrar</button>
-</dialog>
+  <dialog id="instructionsDialog">
+    <h2>📖 Instrucciones del Juego</h2>
+    <h3>🕹️ ¡Bienvenidos al mini juego secreto de las palabras! 🎉</p>
+    <br>
+    <p>¡Hola, compis!</p>
+    <p>Aquí tenéis el jueguecito que os hemos preparado con todo el cariño del mundo.</p>
+    <br>
+    <p>👣 Pasos para jugar sin morir en el intento:</p>
+    <p style="text-indent: 30px">🧠 Escribe letras con tu teclado.</p>
+    <p style="text-indent: 30px">✅ Si aciertas, la palabra se colorea.</p>
+    <p style="text-indent: 30px">🎉 Cuando adivinéis todas… ¡sorpresita visual!</p>
+    <br>
+    <p>¡A disfrutarlo y que gane el más listo! 🧩</p>
+    <br>
+    <button id="closeDialog">Cerrar</button>
+  </dialog>
 
   <script src="script.js"></script>
-
 </body>
 </html>

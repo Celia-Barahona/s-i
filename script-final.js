@@ -4,7 +4,7 @@ document.getElementById("checkMessageButton").addEventListener("click", () => {
   const userResponse = document.getElementById("decodedText").value.trim();
   
   if (userResponse === correctAnswer) {
-    alert("¡Correcto! Has descifrado el mensaje. 🎉");
+    alert("¡Correcto! Habéis descifrado el mensaje. 🎉");
 
     // Generar dinámicamente el nuevo input para la fecha
     const inputSection = document.querySelector(".input-section");
@@ -14,9 +14,8 @@ document.getElementById("checkMessageButton").addEventListener("click", () => {
       const dateInput = document.createElement("input");
       dateInput.type = "text";
       dateInput.id = "dateInput";
-      dateInput.className = "styled-date-input"; // Añadimos la clase para aplicar estilos
+      dateInput.className = "styled-date-input";
       dateInput.placeholder = "Introduce el número";
-      dateInput.maxLength = 6; // Limitar la longitud del input
 
       const checkDateButton = document.createElement("button");
       checkDateButton.id = "checkDateButton";
@@ -33,11 +32,11 @@ document.getElementById("checkMessageButton").addEventListener("click", () => {
         if (enteredDate === "092011") {
           alert("¡Número correcto! 🎉 Habéis completado el desafío final. Si vuestro regalo queréis obtener, este número debéis entender.");
         } else {
-          alert("Número incorrecto. Intenta de nuevo. ❌");
+          alert("Número incorrecto. Inténtalo de nuevo. ❌");
         }
       });
     }
   } else {
-    alert("Respuesta incorrecta. Intenta de nuevo. ❌");
+    alert("Respuesta incorrecta. Inténtalo de nuevo. ❌");
   }
 });

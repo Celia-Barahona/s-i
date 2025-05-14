@@ -2,8 +2,8 @@ const words = ["rojo", "morado", "perla", "amarillo", "verde", "naranja", "blanc
 const colorMap = {
   rojo: "red",
   morado: "purple",
-  perla: "aquamarine", // Perla en aguamarina
-  amarillo: "yellow",
+  perla: "#cdcecf",
+  amarillo: "#e5be01",
   verde: "green",
   naranja: "orange",
   blanco: "white"
@@ -67,15 +67,14 @@ function nextWord() {
     currentWord = words[currentIndex].toUpperCase();
     updateDisplay();
   } else {
-    displayDiv.innerHTML = "<strong>¿Qué puede significar?</strong>";
+    // Mostrar las imágenes y ocultar otros elementos
     document.querySelector(".left").style.display = "block";
-    document.querySelector(".right").style.display = "block";
 
-    document.getElementById("title").style.display = "none";
+    document.getElementById("headerContainer").style.display = "none";
     document.getElementById("instructions").style.display = "none";
+    letterInput.style.display = "none";
     document.getElementById("guessedLettersContainer").style.display = "none";
-    instructionsButton.style.display = "none";
-    letterInput.style.display = "none"; // Ocultamos el campo de entrada
+    displayDiv.style.display = "none";
 
     // Mostrar el botón para ir a la nueva pantalla
     const nextScreenButton = document.getElementById("nextScreenButton");
@@ -85,7 +84,7 @@ function nextWord() {
     nextScreenButton.addEventListener("click", () => {
       window.location.href = "juego-final.html";
     });
-  }
+  //}
 }
 
 // Evento para manejar el input del usuario
