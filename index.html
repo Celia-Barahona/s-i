@@ -18,7 +18,9 @@
     <div class="center">
       <h1 id="title">Descubre las palabras secretas</h1>
       <div id="wordDisplay"></div>
-      <p id="instructions">Escribe letras con tu teclado</p>
+      <p id="instructions">Introduce letras en el campo de texto para descubrir la palabra secreta</p>
+      <!-- Campo de entrada único con transformación a mayúsculas -->
+      <input id="letterInput" type="text" maxlength="1" placeholder="Escribe una letra" style="text-transform: uppercase;" autofocus />
       <div id="guessedLettersContainer">
         Letras pulsadas: <span id="guessedLetters"></span>
       </div>
