@@ -93,5 +93,20 @@ letterInput.addEventListener("input", (e) => {
   }, 250); // Tiempo reducido a medio segundo
 });
 
+// Seleccionamos el botón y el diálogo
+const instructionsButton = document.getElementById("instructionsButton");
+const instructionsDialog = document.getElementById("instructionsDialog");
+const closeDialogButton = document.getElementById("closeDialog");
+
+// Abrir el diálogo al hacer clic en el botón
+instructionsButton.addEventListener("click", () => {
+  instructionsDialog.showModal();
+});
+
+// Cerrar el diálogo al hacer clic en el botón de cierre
+closeDialogButton.addEventListener("click", () => {
+  instructionsDialog.close();
+});
+
 // Inicializamos la visualización
 updateDisplay();
