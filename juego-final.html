@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juego Final</title>
+  <base href="/s-i/">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <style>
+    /* Estilos generales */
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 20px;
+      background-color: #f9f9f9;
+      display: flex;
+      flex-direction: column; /* Distribución vertical */
+      align-items: center;
+      gap: 20px; /* Espaciado entre elementos */
+      min-height: 100vh; /* Altura mínima para llenar la ventana */
+      box-sizing: border-box;
+      overflow-y: auto; /* Permite desplazamiento vertical si es necesario */
+    }
+
+    h1 {
+      font-size: 2.5em;
+      color: #4479a3;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.2em;
+      color: #333;
+      margin: 10px 0;
+    }
+
+    .encrypted-text {
+      font-family: "Courier New", Courier, monospace;
+      font-size: 1.1em;
+      color: #555;
+      background-color: #eef;
+      padding: 15px;
+      border-radius: 5px;
+      margin: 20px auto;
+      width: 90%;
+      max-width: 800px;
+      word-wrap: break-word;
+    }
+
+    .hints-section, .encrypted-section, .input-section {
+      padding: 15px;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      width: 90%;
+      max-width: 800px;
+    }
+
+    .hints-section {
+      text-align: left;
+    }
+
+    .input-section textarea {
+      width: 90%;
+      max-width: 750px;
+      height: 150px;
+      font-size: 1em;
+      padding: 10px;
+      border: 2px solid #ddd;
+      border-radius: 5px;
+      resize: none;
+    }
+
+    .input-section button {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      font-size: 1.2em;
+      background-color: #4479a3;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .input-section button:hover {
+      background-color: #355f82;
+    }
+
+    .styled-date-input {
+  width: 80%; /* Más ancho */
+  max-width: 400px; /* Limitar el ancho máximo */
+  font-size: 1.5em; /* Texto más grande */
+  padding: 15px; /* Espaciado interno */
+  margin-top: 20px; /* Espaciado superior */
+  border: 2px solid #4479a3; /* Borde con color */
+  border-radius: 10px; /* Bordes redondeados */
+  outline: none; /* Eliminar el contorno al hacer clic */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+.styled-date-input:focus {
+  border-color: #355f82; /* Cambiar el color del borde al enfocarse */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Más sombra al enfocarse */
+}
+
+button#checkDateButton {
+  font-size: 1.2em;
+  background-color: #4479a3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button#checkDateButton:hover {
+  background-color: #355f82;
+}
+  </style>
+</head>
+<body>
+  <h1>🕹️ ¡Bienvenidos al juego final! 🎉</h1>
+  <p>Aquí os dejamos un desafío para descifrar. Usad vuestra inteligencia y el cifrado especial (un pequeño truco de desplazamiento) para descubrir el mensaje oculto.</p>
+
+  <div class="hints-section">
+    <h2>🔑 <strong>Pistas para descifrar:</strong></h2>
+    <ul>
+      <li>El cifrado utiliza un desplazamiento de letras, usa la prueba anterior ¡echale imaginación!</li>
+      <li>Usa este patrón para descifrar cada letra.</li>
+      <li>Cuando tengas el mensaje, ¡verás que la sorpresa final está cerca! 😉</li>
+    </ul>
+  </div>
+
+  <div class="encrypted-section">
+    <h2>📜 <strong>Texto Cifrado (con desplazamiento):</strong></h2>
+    <p class="encrypted-text">
+      Lzal aleav jlyv jlyv jlyv jlyv jvtaoltl hrnv kl ylrrltv wlyv lt lr mvtkv btv jlyv jlyv btv aoltl bth ñozavyoh ivtoah jlyv jlyv btv jlyv h rh why xbl wljbrohy. Zo lzahz rlfltkv lzav jlyv jlyv jlyv jlyv zontomojh xbl ñhz hkocothkv lr jlyv jlyv jlyv btv whzhaolswv xbl tvz btl jlyv jlyv jlyv btv. Vz xblylsvz sbjñv.
+    </p>
+  </div>
+
+  <div class="input-section">
+    <h2>✏️ <strong>Para descifrar el mensaje, escribid aquí debajo:</strong></h2>
+    <textarea id="decodedText" placeholder="Introduce aquí tu respuesta..."></textarea>
+    <button id="checkMessageButton">Comprobar Respuesta</button>
+  </div>
+
+  <script src="script-final.js"></script>
+</body>
+</html>

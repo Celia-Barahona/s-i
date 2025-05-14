@@ -1,72 +1,178 @@
-body {
-  font-family: sans-serif;
-  background-color: #d3d3d3;
-  text-align: center;
-  padding: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
-  transition: background-color 0.5s ease;
+/* Aseguramos que el body ocupe toda la pantalla */
+body, html {
+  margin: 0; /* Elimina márgenes predeterminados */
+  padding: 0; /* Elimina paddings predeterminados */
+  width: 100%; /* Ocupa todo el ancho */
+  height: 100%; /* Ocupa toda la altura */
+  display: flex; /* Para centrar el contenido */
+  align-items: center; /* Centrado vertical */
+  justify-content: center; /* Centrado horizontal */
+  background-color: #f0f0f0; /* Color de fondo */
 }
 
+/* Ajustamos el diseño principal */
 .container {
-  display: flex;
-  justify-content: space-between;
-  width: 80%;
-  align-items: center;
+  display: flex; /* Usamos flexbox para alinear los elementos horizontalmente */
+  justify-content: space-between; /* Deja espacio entre las imágenes y el contenido principal */
+  align-items: center; /* Alinea todos los elementos verticalmente */
+  width: 100%; /* Aseguramos que ocupe todo el ancho */
+  height: 100vh; /* Aseguramos que ocupe toda la altura */
+  padding: 0 20px; /* Agregamos un poco de espacio en los lados */
+  box-sizing: border-box; /* Incluye padding en el cálculo del tamaño */
 }
 
-.left, .right {
-  width: 25%;
-  display: none; /* Ocultamos las imágenes al principio */
+/* Sección izquierda (imagen) */
+.left {
+  flex: 0 0 auto; /* La imagen no se expande ni se reduce */
+  text-align: center; /* Centra la imagen */
 }
 
+.left img {
+  max-width: 150px; /* Ajusta el tamaño de la imagen */
+  height: auto; /* Mantén la proporción */
+}
+
+/* Sección derecha (imagen) */
+.right {
+  flex: 0 0 auto; /* La imagen no se expande ni se reduce */
+  text-align: center; /* Centra la imagen */
+}
+
+.right img {
+  max-width: 150px; /* Ajusta el tamaño de la imagen */
+  height: auto; /* Mantén la proporción */
+}
+
+/* Sección central (juego principal) */
 .center {
-  width: 50%;
+  flex: 1; /* Ocupa todo el espacio restante */
+  text-align: center; /* Centra el contenido */
+}
+
+h1 {
+  font-size: 2em;
+  margin-bottom: 20px;
 }
 
 #wordDisplay {
-  font-size: 2em;
-  letter-spacing: 10px;
+  font-size: 1.5em;
+  letter-spacing: 5px;
   margin: 20px 0;
 }
 
-#guessedWords {
-  margin-top: 30px;
+#letterInput {
+  display: block;
+  margin: 20px auto;
+  padding: 10px;
+  font-size: 1.5em;
+  text-align: center;
+  border: 2px solid #333;
+  border-radius: 5px;
+  width: 50%;
+  max-width: 300px;
 }
 
-.letter {
-  border-bottom: 2px solid #333;
-  display: inline-block;
-  width: 30px;
-  text-transform: uppercase;
+#letterInput:focus {
+  outline: none;
+  border-color: #007BFF;
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
 }
 
-.guessed {
-  margin: 5px;
-  font-weight: bold;
-  font-size: 1.2em;
-}
-
-#guessedLettersContainer {
+#guessedList {
   margin-top: 20px;
   font-size: 1.2em;
-  font-weight: bold;
 }
 
-.flashing {
-  animation: flash 0.5s linear infinite;
+#letterInput:focus {
+  outline: none;
+  border-color: #007BFF;
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
 }
 
-@keyframes flash {
-  0% { opacity: 1; }
-  50% { opacity: 0.3; }
-  100% { opacity: 1; }
+/* Estilo para el hint del input */
+#letterInput::placeholder {
+  font-size: 0.8em; /* Reducimos el tamaño del texto */
+  color: #888; /* Color gris claro */
+  font-style: italic; /* Opcional: hace el texto cursivo */
 }
 
-img {
-  width: 100%;
-  max-width: 200px;
+/* Diseño responsivo para evitar que el hint se oculte en pantallas pequeñas */
+@media (max-width: 480px) { /* Para dispositivos móviles pequeños */
+  #letterInput::placeholder {
+    font-size: 1em; /* Aumentamos el tamaño del hint para que sea legible */
+  }
+
+  #letterInput {
+    width: 80%; /* Ajustamos el ancho del input */
+    font-size: 1em; /* Aumentamos ligeramente el tamaño del texto */
+  }
+}
+
+/* Opcional: Ocultar las imágenes izquierda y derecha si no son necesarias */
+.left, .right {
+  display: none;
+}
+
+
+#headerContainer {
+  display: flex; /* Activa Flexbox */
+  align-items: center; /* Alinea verticalmente en el centro */
+  justify-content: center; /* Centra horizontalmente */
+  gap: 20px; /* Espaciado horizontal entre el ícono y el título */
+}
+
+/* Estilo para el botón de instrucciones */
+#instructionsButton {
+  padding: 10px 20px;
+  font-size: 2em;
+  border: none;
+  background: none;
+}
+
+/* Estilo para el diálogo */
+dialog {
+  border: none;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  width: 70%;
+}
+
+dialog h2 {
+  margin-top: 0;
+}
+
+dialog button {
+  padding: 8px 16px;
+  font-size: 1em;
+  background-color: #FF6B6B;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+dialog button:hover {
+  background-color: #c70000;
+}
+
+/* Estilo para el botón de la nueva pantalla */
+#nextScreenButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem; /* Tamaño del ícono */
+  background-color: #4479a3; /* Fondo azul */
+  color: white; /* Color del texto */
+  border: none;
+  border-radius: 10px;
+  padding: 0px 30px;
+  cursor: pointer;
+  margin: 20px auto;
+  z-index: 1000; /* Asegura que esté encima de otros elementos */
+  transition: background-color 0.3s ease; /* Animación suave */
+}
+
+#nextScreenButton:hover {
+  background-color: #355f82; /* Azul más oscuro al pasar el mouse */
 }
