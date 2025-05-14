@@ -109,9 +109,9 @@ letterInput.addEventListener("input", (e) => {
 });
 
 // Abre el diálogo automáticamente al cargar la página
-//window.addEventListener("load", () => {
-//  instructionsDialog.showModal();
-//});
+window.addEventListener("load", () => {
+  instructionsDialog.showModal();
+});
 
 // Abrir el diálogo al hacer clic en el botón
 instructionsButton.addEventListener("click", () => {
