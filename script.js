@@ -18,6 +18,11 @@ const guessedList = document.getElementById("guessedList");
 const guessedLettersSpan = document.getElementById("guessedLetters");
 const letterInput = document.getElementById("letterInput");
 
+// Botón de info y el diálogo
+const instructionsButton = document.getElementById("instructionsButton");
+const instructionsDialog = document.getElementById("instructionsDialog");
+const closeDialogButton = document.getElementById("closeDialog");
+
 function updateDisplay() {
   let display = "";
   for (let letter of currentWord) {
@@ -31,7 +36,7 @@ function updateGuessedLetters() {
 }
 
 function checkCompletion() {
-  return currentWord.split("").every(letter => guessedLetters.includes(letter));
+ return currentWord.split("").every(letter => guessedLetters.includes(letter));
 }
 
 function flashWord(color) {
@@ -51,7 +56,7 @@ function nextWord() {
 
   document.body.style.backgroundColor = "#90ee90"; // verde clarito
   setTimeout(() => {
-    document.body.style.backgroundColor = "#d3d3d3";
+    document.body.style.backgroundColor = "#f0f0f0";
   }, 800);
 
   guessedLetters = [];
@@ -69,7 +74,17 @@ function nextWord() {
     document.getElementById("title").style.display = "none";
     document.getElementById("instructions").style.display = "none";
     document.getElementById("guessedLettersContainer").style.display = "none";
+    instructionsButton.style.display = "none";
     letterInput.style.display = "none"; // Ocultamos el campo de entrada
+
+    // Mostrar el botón para ir a la nueva pantalla
+    const nextScreenButton = document.getElementById("nextScreenButton");
+    nextScreenButton.style.display = "flex";
+
+    // Redirigir al hacer clic en el botón
+    nextScreenButton.addEventListener("click", () => {
+      window.location.href = "juego-final.html";
+    });
   }
 }
 
@@ -93,10 +108,10 @@ letterInput.addEventListener("input", (e) => {
   }, 250); // Tiempo reducido a medio segundo
 });
 
-// Seleccionamos el botón y el diálogo
-const instructionsButton = document.getElementById("instructionsButton");
-const instructionsDialog = document.getElementById("instructionsDialog");
-const closeDialogButton = document.getElementById("closeDialog");
+// Abre el diálogo automáticamente al cargar la página
+//window.addEventListener("load", () => {
+//  instructionsDialog.showModal();
+//});
 
 // Abrir el diálogo al hacer clic en el botón
 instructionsButton.addEventListener("click", () => {
