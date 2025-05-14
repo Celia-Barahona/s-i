@@ -84,7 +84,7 @@ function nextWord() {
     nextScreenButton.addEventListener("click", () => {
       window.location.href = "juego-final.html";
     });
-  //}
+  }
 }
 
 // Evento para manejar el input del usuario
