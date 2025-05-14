@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Juego de Palabras</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+    <!-- Imagen de la izquierda -->
+    <div class="left">
+      <img src="img/Silvia.png" alt="Imagen izquierda">
+    </div>
+
+    <!-- Centro: el juego -->
+    <div class="center">
+      <h1 id="title">Descubre las palabras secretas</h1>
+      <div id="wordDisplay"></div>
+      <p id="instructions">Escribe letras con tu teclado</p>
+      <div id="guessedLettersContainer">
+        Letras pulsadas: <span id="guessedLetters"></span>
+      </div>
+      <div id="guessedWords">
+        <h2>Palabras adivinadas:</h2>
+        <div id="guessedList"></div>
+      </div>
+    </div>
+
+    <!-- Imagen de la derecha -->
+    <div class="right">
+      <img src="img/Isma.png" alt="Trollface">
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,72 @@
+body {
+  font-family: sans-serif;
+  background-color: #d3d3d3;
+  text-align: center;
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  transition: background-color 0.5s ease;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  align-items: center;
+}
+
+.left, .right {
+  width: 25%;
+  display: none; /* Ocultamos las imágenes al principio */
+}
+
+.center {
+  width: 50%;
+}
+
+#wordDisplay {
+  font-size: 2em;
+  letter-spacing: 10px;
+  margin: 20px 0;
+}
+
+#guessedWords {
+  margin-top: 30px;
+}
+
+.letter {
+  border-bottom: 2px solid #333;
+  display: inline-block;
+  width: 30px;
+  text-transform: uppercase;
+}
+
+.guessed {
+  margin: 5px;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+#guessedLettersContainer {
+  margin-top: 20px;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.flashing {
+  animation: flash 0.5s linear infinite;
+}
+
+@keyframes flash {
+  0% { opacity: 1; }
+  50% { opacity: 0.3; }
+  100% { opacity: 1; }
+}
+
+img {
+  width: 100%;
+  max-width: 200px;
+}
