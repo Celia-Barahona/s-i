@@ -79,15 +79,20 @@
         for (let col = 0; col < gridSize; col++) {
           const piece = document.createElement('div');
           piece.classList.add('puzzle-piece');
-          piece.dataset.position = `${row}-${col}`; // Asignar posición inicial
+
+          // Asignar la posición objetivo (posición correcta)
+          piece.dataset.targetPosition = `${row}-${col}`;
+
+          // Asignar la posición actual (posición inicial)
+          piece.dataset.currentPosition = `${row}-${col}`;
 
           // Última pieza es el espacio vacío
           if (row === gridSize - 1 && col === gridSize - 1) {
             piece.classList.add('empty');
-            pieces.push(piece);
             continue;
           }
 
+          // Estilo de la imagen para cada pieza
           piece.style.backgroundImage = `url(${imageSrc})`;
           piece.style.backgroundPosition = `-${col * 100}px -${row * 100}px`;
           piece.dataset.index = index;
@@ -96,65 +101,97 @@
         }
       }
 
-      // Mezclar las piezas hasta que no estén en un estado resuelto
+      // Mezclar las piezas hasta que el puzzle no esté en un estado resuelto
       do {
-        pieces.sort(() => Math.random() - 0.5);
-      } while (isPuzzleSolved(pieces));
+        shufflePieces(pieces);
+      } while (isSolved(pieces));
 
       // Añadir piezas al contenedor
       pieces.forEach(piece => puzzleContainer.appendChild(piece));
       puzzleInitialized = true; // Marcar el puzzle como inicializado
     };
 
-    // Verificar si el puzzle está resuelto
-    const isPuzzleSolved = (pieces = Array.from(document.querySelectorAll('.puzzle-piece'))) => {
-      return pieces.every((piece, index) => {
-        const expectedRow = Math.floor(index / gridSize);
-        const expectedCol = index % gridSize;
-        const [currentRow, currentCol] = piece.dataset.position.split('-').map(Number);
-        return currentRow === expectedRow && currentCol === expectedCol;
+    // Mezclar las piezas
+    const shufflePieces = (pieces) => {
+      for (let i = pieces.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [pieces[i], pieces[j]] = [pieces[j], pieces[i]];
+      }
+
+      // Actualizar las posiciones actuales tras mezclar
+      pieces.forEach((piece, index) => {
+        const row = Math.floor(index / gridSize);
+        const col = index % gridSize;
+        piece.dataset.currentPosition = `${row}-${col}`;
       });
     };
 
-    const checkVictory = () => {
-      if (puzzleInitialized && isPuzzleSolved()) {
-        victoryMessage.style.display = 'block';
-      }
+    // Verificar si el puzzle está resuelto
+    const isSolved = (pieces = Array.from(document.querySelectorAll('.puzzle-piece'))) => {
+      return pieces.every(piece => {
+        return piece.dataset.currentPosition === piece.dataset.targetPosition;
+      });
     };
 
     // Mover una pieza si es adyacente al espacio vacío
     const movePiece = (piece) => {
-      const [pieceRow, pieceCol] = piece.dataset.position.split('-').map(Number);
+      // Obtener la posición actual de la pieza seleccionada
+      const [pieceRow, pieceCol] = piece.dataset.currentPosition.split('-').map(Number);
       const { row: emptyRow, col: emptyCol } = emptyPosition;
 
+      console.log(`Pieza seleccionada: (${pieceRow}, ${pieceCol})`);
+      console.log(`Posición vacía: (${emptyRow}, ${emptyCol})`);
+
+      // Verificar si la pieza es adyacente a la vacía
       const isAdjacent =
-        (pieceRow === emptyRow && Math.abs(pieceCol - emptyCol) === 1) ||
-        (pieceCol === emptyCol && Math.abs(pieceRow - emptyRow) === 1);
+        (pieceRow === emptyRow && Math.abs(pieceCol - emptyCol) === 1) || // Misma fila, columnas adyacentes
+        (pieceCol === emptyCol && Math.abs(pieceRow - emptyRow) === 1);   // Misma columna, filas adyacentes
 
       if (isAdjacent) {
-        // Intercambiar posiciones
-        piece.dataset.position = `${emptyRow}-${emptyCol}`;
-        emptyPosition = { row: pieceRow, col: pieceCol };
+        console.log('La pieza es adyacente. Moviendo pieza...');
 
+        // Obtener la pieza vacía
         const emptyPiece = document.querySelector('.empty');
-        emptyPiece.dataset.position = `${pieceRow}-${pieceCol}`;
+
+        // Validar si el espacio vacío existe en el DOM
+        if (!emptyPiece) {
+          console.error('Error: No se encontró el espacio vacío en el puzzle.');
+          return;
+        }
+
+        // Intercambiar posiciones entre la pieza seleccionada y la vacía
+        piece.dataset.currentPosition = `${emptyRow}-${emptyCol}`;
+        emptyPiece.dataset.currentPosition = `${pieceRow}-${pieceCol}`;
+        emptyPosition = { row: pieceRow, col: pieceCol }; // Actualizar posición de la vacía
+
+        // Reasignar las clases
+        piece.classList.add('empty');
+        emptyPiece.classList.remove('empty');
+
+        console.log(`Nueva posición de la pieza vacía: (${emptyPosition.row}, ${emptyPosition.col})`);
 
         // Reordenar las piezas en el DOM
         reorderPieces();
 
         // Verificar si el puzzle está resuelto
-        checkVictory();
+        if (isSolved()) {
+          victoryMessage.style.display = 'block';
+        }
+      } else {
+        console.log('La pieza seleccionada no es adyacente a la vacía.');
       }
     };
 
-    // Reordenar las piezas en el DOM según sus posiciones
+    // Reordenar las piezas en el DOM según sus posiciones actuales
     const reorderPieces = () => {
       const pieces = Array.from(document.querySelectorAll('.puzzle-piece'));
       pieces.sort((a, b) => {
-        const [aRow, aCol] = a.dataset.position.split('-').map(Number);
-        const [bRow, bCol] = b.dataset.position.split('-').map(Number);
+        const [aRow, aCol] = a.dataset.currentPosition.split('-').map(Number);
+        const [bRow, bCol] = b.dataset.currentPosition.split('-').map(Number);
         return aRow * gridSize + aCol - (bRow * gridSize + bCol);
       });
+
+      // Vaciar el contenedor y volver a agregar las piezas ordenadas
       puzzleContainer.innerHTML = '';
       pieces.forEach(piece => puzzleContainer.appendChild(piece));
     };
