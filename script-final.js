@@ -1,4 +1,4 @@
-const correctAnswer = "Este texto cero cero cero cero contiene algo de relleno pero en el fondo uno cero cero uno tiene una historia bonita cero cero uno cero a la par que peculiar. Si estas leyendo esto cero cero cero cero significa que has adivinado el cero cero cero uno pasatiempo que nos une cero cero cero uno. Os queremos mucho.";
+const correctAnswer = "Este texto cero cero cero cero contiene algo de relleno pero en el fondo uno cero cero uno tiene una historia bonita cero cero uno cero a la par que peculiar. Si estás leyendo esto cero cero cero cero significa que has adivinado el cero cero cero uno pasatiempo que nos une cero cero cero uno. Os queremos mucho.";
 
 document.getElementById("checkMessageButton").addEventListener("click", () => {
   const userResponse = document.getElementById("decodedText").value.trim();
